@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Control de Empleados</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    <body>
+        <h1>Sistema de Control de Empleados</h1>
+        <h2>Crear un usuario nuevo</h2>
+
+        <form th:action="@{/usuarios/nuevo}" method="post">
+
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <br><br>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <br><br>
+
+            <label>Rol</label>
+
+            <select name="rol">
+                <option th:each="r : ${roles}"
+                        th:value="${r}"
+                        th:text="${r}">
+                </option>
+            </select>
+
+            <br><br>
+
+            <button type="submit">Guardar</button>
+
+        </form>
+
+        <br>
+
+        <a th:href="@{/usuarios}">Volver</a>
+
+    </body>
+</html>

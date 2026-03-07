@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Empleados</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h2>Lista de empleados</h2>
+
+    <a th:href="@{/empleados/nuevo}">Nuevo empleado</a>
+
+    <table border="1">
+
+    <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Puesto</th>
+    </tr>
+
+    <tr th:each="emp : ${empleados}">
+    <td th:text="${emp.id}"></td>
+    <td th:text="${emp.nombre}"></td>
+    <td th:text="${emp.email}"></td>
+    <td th:text="${emp.puesto}"></td>
+    </tr>
+
+    </table>
+
+    <br>
+
+    <a th:href="@{/home}">Volver</a>
+</body>
+</html>
