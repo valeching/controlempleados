@@ -2,7 +2,7 @@ package com.proyecto.controlempleados.service;
 
 import com.proyecto.controlempleados.model.Rol;
 import com.proyecto.controlempleados.model.Usuario;
-import com.proyecto.controlempleados.Repository.UsuarioRepository;
+import com.proyecto.controlempleados.repository.UsuarioRepository;
 
 import java.util.List;
 

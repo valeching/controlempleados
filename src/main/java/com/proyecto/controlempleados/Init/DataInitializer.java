@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.proyecto.controlempleados.model.Rol;
-import com.proyecto.controlempleados.Repository.UsuarioRepository;
+import com.proyecto.controlempleados.repository.UsuarioRepository;
 import com.proyecto.controlempleados.service.UsuarioService;
 
 @Component

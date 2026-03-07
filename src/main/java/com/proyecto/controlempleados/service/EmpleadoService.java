@@ -1,7 +1,7 @@
 package com.proyecto.controlempleados.service;
 
 import com.proyecto.controlempleados.model.Empleado;
-import com.proyecto.controlempleados.Repository.EmpleadoRepository;
+import com.proyecto.controlempleados.repository.EmpleadoRepository;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
