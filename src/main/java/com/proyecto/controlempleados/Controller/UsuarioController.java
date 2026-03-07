@@ -4,49 +4,49 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.proyecto.controlempleados.model.Rol;
 import com.proyecto.controlempleados.model.Usuario;
-import com.proyecto.controlempleados.service.UsuarioService;
+import com.proyecto.controlempleados.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping("/admin/usuarios")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioController(UsuarioRepository usuarioRepository){
+        this.usuarioRepository = usuarioRepository;
     }
 
-    // LISTAR USUARIOS
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("usuarios", usuarioService.listar());
-        return "usuarios";
+    public String listarUsuarios(Model model){
+
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+
+        return "usuarios/lista";
     }
 
-    // MOSTRAR FORMULARIO PARA CREAR USUARIO
     @GetMapping("/nuevo")
-    public String mostrarFormularioCreacion(Model model) {
+    public String nuevoUsuario(Model model){
+
         model.addAttribute("usuario", new Usuario());
-        model.addAttribute("roles", Rol.values());
-        return "usuario-form";
+
+        return "usuarios/form";
     }
 
-    // GUARDAR USUARIO
-    @PostMapping("/nuevo")
-    public String crear(@RequestParam String username,
-                        @RequestParam String password,
-                        @RequestParam Rol rol,
-                        Model model) {
-        try {
-            usuarioService.crearUsuario(username, password, rol);
-            return "redirect:/usuarios";
+    @PostMapping("/guardar")
+    public String guardarUsuario(@ModelAttribute Usuario usuario){
 
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            model.addAttribute("roles", Rol.values());
-            return "usuario-form";
-        }
+        usuarioRepository.save(usuario);
+
+        return "redirect:/admin/usuarios";
     }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable Long id){
+
+        usuarioRepository.deleteById(id);
+
+        return "redirect:/admin/usuarios";
+    }
+
 }

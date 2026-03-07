@@ -3,29 +3,33 @@ package com.proyecto.controlempleados.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "cedula"))
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true)
+    private String cedula;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Rol rol;
-
-    @Column(nullable = false)
-    private boolean enabled = true;
 
     public Usuario() {}
 
-    public Usuario(String username, String password, Rol rol) {
+    public Usuario(String cedula, String nombre, String username, String password, Rol rol) {
+        this.cedula = cedula;
+        this.nombre = nombre;
         this.username = username;
         this.password = password;
         this.rol = rol;
@@ -35,8 +39,20 @@ public class Usuario {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUsername() {
@@ -61,13 +77,5 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 }

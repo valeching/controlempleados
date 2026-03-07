@@ -1,37 +1,37 @@
 package com.proyecto.controlempleados.Init;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.proyecto.controlempleados.model.Rol;
+import com.proyecto.controlempleados.model.Usuario;
 import com.proyecto.controlempleados.repository.UsuarioRepository;
-import com.proyecto.controlempleados.service.UsuarioService;
 
-@Component
-public class DataInitializer implements CommandLineRunner {
+@Configuration
+public class DataInitializer {
 
-    private final UsuarioRepository repo;
-    private final UsuarioService service;
+    @Bean
+    CommandLineRunner initUsuarios(UsuarioRepository repo, PasswordEncoder encoder){
 
-    public DataInitializer(UsuarioRepository repo, UsuarioService service) {
-        this.repo = repo;
-        this.service = service;
+        return args -> {
+
+            if(repo.count()==0){
+
+                Usuario admin = new Usuario(
+                        "111111111",
+                        "Administrador",
+                        "admin",
+                        encoder.encode("admin123"),
+                        Rol.ADMIN
+                );
+
+                repo.save(admin);
+
+            }
+
+        };
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-        // Crear administrador si no existe
-        if (!repo.existsByUsername("admin")) {
-            service.crearUsuario("admin", "admin123", Rol.ADMIN);
-            System.out.println("Usuario ADMIN creado");
-        }
-
-        // Crear usuario empleado si no existe
-        if (!repo.existsByUsername("empleado")) {
-            service.crearUsuario("empleado", "empleado123", Rol.USER);
-            System.out.println("Usuario EMPLEADO creado");
-        }
-
-    }
 }
