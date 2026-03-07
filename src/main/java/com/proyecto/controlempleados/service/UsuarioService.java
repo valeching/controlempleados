@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
-    
+
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder encoder;
 
@@ -24,17 +24,21 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario crearUsuario(String username, String password, Rol rol){
+    public Usuario crearUsuario(String cedula, String username, String password, Rol rol){
 
         if (usuarioRepository.existsByUsername(username)){
             throw new IllegalArgumentException("El username ya existe!");
         }
 
+        if (usuarioRepository.existsByCedula(cedula)){
+            throw new IllegalArgumentException("La cédula ya está registrada!");
+        }
+
         Usuario u = new Usuario();
+        u.setCedula(cedula);
         u.setUsername(username);
-        u.setPassword(encoder.encode(password)); 
+        u.setPassword(encoder.encode(password));
         u.setRol(rol);
-        u.setEnabled(true);
 
         return usuarioRepository.save(u);
     }

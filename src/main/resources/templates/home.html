@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"></html>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,23 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-    <h1>Sistema de Control de Empleados</h1>
+    <h1>Sistema Control de Empleados</h1>
+
+    <br>
 
     <a th:href="@{/empleados}">Ver empleados</a>
+
     <br><br>
 
-    <a th:href="@{/usuarios}">Administrar usuarios</a>
+    <div sec:authorize="hasRole('ADMIN')">
+
+        <a th:href="@{/admin/usuarios}">
+            Administrar usuarios
+        </a>
+
+    </div>
+
+
     <br><br>
 
     <a th:href="@{/logout}">Cerrar sesión</a>

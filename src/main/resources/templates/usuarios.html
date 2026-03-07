@@ -7,31 +7,41 @@
         <link rel="stylesheet" th:href="@{/css/styles.css}">
     </head>
     <body>
-        <h2>Lista de usuarios</h2>
+        <h2>Lista de Usuarios</h2>
 
-        <a th:href="@{/usuarios/nuevo}">Nuevo usuario</a>
+        <a th:href="@{/admin/usuarios/nuevo}">Crear un nuevo Usuario</a>
+
+        <br><br>
 
         <table border="1">
 
         <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Rol</th>
-        <th>Activo</th>
+            <th>ID</th>
+            <th>Cédula</th>
+            <th>Username</th>
+            <th>Rol</th>
+            <th>Acciones</th>
         </tr>
 
         <tr th:each="u : ${usuarios}">
-        <td th:text="${u.id}"></td>
-        <td th:text="${u.username}"></td>
-        <td th:text="${u.rol}"></td>
-        <td th:text="${u.enabled}"></td>
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.cedula}"></td>
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.rol}"></td>
+
+            <td>
+                <a th:href="@{/admin/usuarios/eliminar/{id}(id=${u.id})}">
+                    Eliminar
+                </a>
+            </td>
         </tr>
 
         </table>
 
-        <br>
+        <br><br>
 
-        <a th:href="@{/home}">Volver</a>
+        <a th:href="@{/}">Volver</a>
+
 
     </body>
 </html>

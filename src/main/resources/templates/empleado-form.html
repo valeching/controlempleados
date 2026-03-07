@@ -7,32 +7,27 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-    <h1>Sistema de Control de Empleados</h1>
-    <h2>Crear un empleado nuevo</h2>
+    <h2>Registrar Empleado</h2>
 
-    <form th:action="@{/empleados/nuevo}" th:object="${empleado}" method="post">
+    <form th:action="@{/empleados/guardar}" method="post">
 
-        <label>Nombre</label>
-        <input type="text" th:field="*{nombre}" required>
+    <label>Nombre</label>
+    <input type="text" name="nombre" required>
 
-        <br><br>
+    <br><br>
 
-        <label>Email</label>
-        <input type="email" th:field="*{email}" required>
+    <label>Correo</label>
+    <input type="email" name="correo" required>
 
-        <br><br>
+    <br><br>
 
-        <label>Puesto</label>
-        <input type="text" th:field="*{puesto}" required>
-
-        <br><br>
-
-        <button type="submit">Guardar</button>
+    <button type="submit">Guardar</button>
 
     </form>
 
-<br>
+    <br>
 
-<a th:href="@{/empleados}">Volver</a>
+    <a th:href="@{/empleados}">Volver</a>
+
 </body>
 </html>

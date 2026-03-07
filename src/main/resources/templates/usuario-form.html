@@ -7,39 +7,41 @@
         <link rel="stylesheet" th:href="@{/css/styles.css}">
     </head>
     <body>
-        <h1>Sistema de Control de Empleados</h1>
-        <h2>Crear un usuario nuevo</h2>
+        <h2>Crear un nuevo Empleado</h2>
 
-        <form th:action="@{/usuarios/nuevo}" method="post">
+        <form th:action="@{/admin/usuarios/guardar}" method="post">
 
-            <label>Username</label>
-            <input type="text" name="username" required>
+        <label>Cédula</label>
+        <input type="text" name="cedula" required>
 
-            <br><br>
+        <br><br>
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+        <label>Username</label>
+        <input type="text" name="username" required>
 
-            <br><br>
+        <br><br>
 
-            <label>Rol</label>
+        <label>Password</label>
+        <input type="password" name="password" required>
 
-            <select name="rol">
-                <option th:each="r : ${roles}"
-                        th:value="${r}"
-                        th:text="${r}">
-                </option>
-            </select>
+        <br><br>
 
-            <br><br>
+        <label>Rol</label>
 
-            <button type="submit">Guardar</button>
+        <select name="rol">
+        <option value="ADMIN">ADMIN</option>
+        <option value="EMPLEADO">EMPLEADO</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Guardar</button>
 
         </form>
 
         <br>
 
-        <a th:href="@{/usuarios}">Volver</a>
+        <a th:href="@{/admin/usuarios}">Volver</a>
 
-    </body>
+</body>
 </html>
