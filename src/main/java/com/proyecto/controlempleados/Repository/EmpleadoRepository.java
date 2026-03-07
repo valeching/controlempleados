@@ -1,4 +1,4 @@
-package com.proyecto.controlempleados.Repository;
+package com.proyecto.controlempleados.repository;
 
 import com.proyecto.controlempleados.model.Empleado;
 

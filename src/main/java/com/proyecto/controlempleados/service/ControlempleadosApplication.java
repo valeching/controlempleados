@@ -1,4 +1,4 @@
-package com.proyecto.controlempleados;
+package com.proyecto.controlempleados.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
