@@ -2,7 +2,6 @@ package com.proyecto.controlempleados.service;
 
 import com.proyecto.controlempleados.model.Empleado;
 import com.proyecto.controlempleados.repository.EmpleadoRepository;
-
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +19,26 @@ public class EmpleadoService {
     }
 
     public Empleado crear(Empleado e){
-        return repo.save(e);
+
+    if(e.getId() != null){
+
+        Empleado existente = repo.findById(e.getId()).orElse(null);
+
+        if(existente != null){
+            existente.setNombre(e.getNombre());
+            existente.setApellidos(e.getApellidos());
+            existente.setCedula(e.getCedula());
+            existente.setCorreo(e.getCorreo());
+            existente.setTelefono(e.getTelefono());
+            existente.setEdad(e.getEdad());
+            existente.setPuesto(e.getPuesto());
+
+            return repo.save(existente);
+        }
     }
+
+    return repo.save(e);
+}
 
     public Empleado buscarPorId(Long id){
         return repo.findById(id).orElse(null);
@@ -31,7 +48,7 @@ public class EmpleadoService {
         repo.deleteById(id);
     }
 
-    // VALIDACIONES
+    // VALIDACIONES CREAR
 
     public boolean existeCedula(String cedula){
         return repo.existsByCedula(cedula);
@@ -43,5 +60,19 @@ public class EmpleadoService {
 
     public boolean existeTelefono(String telefono){
         return repo.existsByTelefono(telefono);
+    }
+
+    // VALIDACIONES EDITAR
+
+    public boolean existeCedulaOtroEmpleado(String cedula, Long id){
+        return repo.existsByCedulaAndIdNot(cedula, id);
+    }
+
+    public boolean existeCorreoOtroEmpleado(String correo, Long id){
+        return repo.existsByCorreoAndIdNot(correo, id);
+    }
+
+    public boolean existeTelefonoOtroEmpleado(String telefono, Long id){
+        return repo.existsByTelefonoAndIdNot(telefono, id);
     }
 }

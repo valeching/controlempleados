@@ -16,13 +16,13 @@ public class Empleado {
     @Column(nullable = false)
     private String apellidos;
 
-    @Column(nullable = false)
+   @Column(nullable = false, unique = true)
     private String cedula;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String correo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String telefono;
 
     @Column(nullable = false)
@@ -45,6 +45,10 @@ public class Empleado {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {   // ⭐ ESTE MÉTODO ERA EL QUE FALTABA
+        this.id = id;
     }
 
     public String getNombre() {

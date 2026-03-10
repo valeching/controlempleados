@@ -21,7 +21,7 @@
 
     <form class="container" th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
 
-        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:name="id" th:value="${empleado.id}">
 
         <label>Nombre</label>
         <input type="text" th:field="*{nombre}" required>
