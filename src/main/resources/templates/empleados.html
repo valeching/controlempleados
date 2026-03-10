@@ -7,9 +7,15 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body class="empleados-page">
-    <h2>Lista de Empleados</h2>
+    
+    <nav class="menu-admin">
+        <div class="menu-links">
+            <a href="/home">Inicio</a>
+            <a href="/empleados/guardar">Crear Empleado</a>
+        </div>
+    </nav>
 
-    <br><br>
+    <h2>Lista de Empleados</h2>
 
     <table class="container" border="1">
 
@@ -33,7 +39,7 @@
 
             <td>
                 <a th:href="@{/empleados/editar/{id}(id=${e.id})}">
-                    <button type="button">Editar</button>
+                    <button class="btn-editar" type="button">Editar</button>
                 </a>
 
                 <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}"
@@ -42,12 +48,15 @@
                 </a>
             </td>
         </tr>
-
     </table>
 
-    <br><br>
+    <div class="volver-container">
+        <a th:href="@{/home}">
+            <button class="btn-volver">Volver</button>
+        </a>
+    </div>
 
-    <a th:href="@{/home}">Volver</a>
+    
 
 </body>
 <script>

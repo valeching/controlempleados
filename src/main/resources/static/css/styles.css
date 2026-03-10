@@ -110,8 +110,19 @@ body{
     width:500px;
 }
 
+
+.empleados-page{
+    padding-top:100px;  
+}
+
+.empleados-page h2{
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
 .empleados-page .container{
-    width:900px;
+    width:1250px;
 }
 
 
@@ -208,9 +219,52 @@ a:hover{
     text-decoration:none;
 }
 
+.btn-eliminar{
+    background:#e74c3c;
+    color:white;
+    padding:8px 12px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-eliminar:hover{
+    background:#c0392b;
+}
+
+.btn-editar{
+    background:#26b547;
+    color:white;
+    padding:8px 12px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-editar:hover{
+    background:#1e8e3e;
+}
 .mensaje-error{
     color:#ff4d4d;
     font-weight:bold;
     text-align:center;
     margin:15px auto 20px auto;
+}
+
+.volver-container{
+    text-align:center;
+    margin-top:25px;
+}
+
+.btn-volver{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-volver:hover{
+    background:#2980b9;
 }

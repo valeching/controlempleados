@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.proyecto.controlempleados.model.Empleado;
 import com.proyecto.controlempleados.service.EmpleadoService;
 
+//
 @Controller
 @RequestMapping("/empleados")
 public class EmpleadoController {

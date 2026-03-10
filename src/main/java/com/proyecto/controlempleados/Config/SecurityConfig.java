@@ -6,10 +6,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+//aca se conf la seguridad de la app
 @Configuration
 public class SecurityConfig {
 
-    @Bean
+    // aqui se agregan las configuraciones de seguridad, como las rutas públicas, privadas, roles, etc
+    @Bean 
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
@@ -20,13 +22,11 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
 
-                // rutas públicas
+               
                 .requestMatchers("/login","/registro","/css/**").permitAll()
 
-                // SOLO ADMIN puede acceder a empleados
                 .requestMatchers("/empleados/**").hasRole("ADMIN")
 
-                // cualquier otra página requiere login
                 .anyRequest().authenticated()
             )
 
