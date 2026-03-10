@@ -30,4 +30,18 @@ public class EmpleadoService {
     public void eliminar(Long id){
         repo.deleteById(id);
     }
+
+    // VALIDACIONES
+
+    public boolean existeCedula(String cedula){
+        return repo.existsByCedula(cedula);
+    }
+
+    public boolean existeCorreo(String correo){
+        return repo.existsByCorreo(correo);
+    }
+
+    public boolean existeTelefono(String telefono){
+        return repo.existsByTelefono(telefono);
+    }
 }

@@ -13,30 +13,34 @@
 
     <table border="1">
 
-        <tr>
-        <th>ID</th>
         <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Cédula</th>
         <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Edad</th>
+        <th>Puesto</th>
         <th>Acciones</th>
-        </tr>
 
         <tr th:each="e : ${empleados}">
+            <td th:text="${e.nombre}"></td>
+            <td th:text="${e.apellidos}"></td>
+            <td th:text="${e.cedula}"></td>
+            <td th:text="${e.correo}"></td>
+            <td th:text="${e.telefono}"></td>
+            <td th:text="${e.edad}"></td>
+            <td th:text="${e.puesto}"></td>
 
-    <td th:text="${e.id}"></td>
-    <td th:text="${e.nombre}"></td>
-    <td th:text="${e.correo}"></td>
+            <td>
+                <a th:href="@{/empleados/editar/{id}(id=${e.id})}">
+                    <button type="button">Editar</button>
+                </a>
 
-    <td>
-        <a th:href="@{/empleados/editar/{id}(id=${e.id})}">
-        <button>Editar</button>
-        </a>
-
-        <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
-        <button>Eliminar</button>
-        </a>
-    </td>
-
-    </tr>
+                <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
+                    <button type="button">Eliminar</button>
+                </a>
+            </td>
+        </tr>
 
     </table>
 

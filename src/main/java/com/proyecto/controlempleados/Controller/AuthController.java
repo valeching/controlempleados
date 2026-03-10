@@ -3,11 +3,14 @@ package com.proyecto.controlempleados.Controller;
 import com.proyecto.controlempleados.model.Rol;
 import com.proyecto.controlempleados.model.Usuario;
 import com.proyecto.controlempleados.repository.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 
 @Controller
@@ -19,7 +22,6 @@ public class AuthController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    // RUTA RAÍZ
     @GetMapping("/")
     public String inicio(){
         return "redirect:/login";
@@ -47,37 +49,46 @@ public class AuthController {
     }
 
     @GetMapping("/home")
-public String home(Authentication auth, Model model){
+    public String home(Authentication auth, Model model){
 
-    String username = auth.getName();
+        String username = auth.getName();
 
-    Usuario usuario = usuarioRepository.findByUsername(username).orElse(null);
+        Usuario usuario = usuarioRepository.findByUsername(username).orElse(null);
 
-    model.addAttribute("usuario", usuario);
+        model.addAttribute("usuario", usuario);
 
-    return "home";
-}
+        return "home";
+    }
 
     @PostMapping("/perfil/actualizar")
-    public String actualizarPerfil(@ModelAttribute Usuario usuario){
+    public String actualizarPerfil(
+            @RequestParam Long id,
+            @RequestParam String nombre,
+            @RequestParam String username,
+            @RequestParam String correo,
+            Authentication auth,
+            Model model) {
 
-        if(usuario.getId() == null){
-            return "redirect:/home";
-        }
+        Usuario usuarioDB = usuarioRepository.findById(id).orElse(null);
 
-        Usuario usuarioDB = usuarioRepository.findById(usuario.getId()).orElse(null);
-
-        if(usuarioDB != null){
-
-            usuarioDB.setNombre(usuario.getNombre());
-            usuarioDB.setUsername(usuario.getUsername());
-            usuarioDB.setCorreo(usuario.getCorreo());
-
-            // NO se modifica la cedula
+        if (usuarioDB != null) {
+            usuarioDB.setNombre(nombre);
+            usuarioDB.setUsername(username);
+            usuarioDB.setCorreo(correo);
 
             usuarioRepository.save(usuarioDB);
+
+            Authentication nuevaAuth = new UsernamePasswordAuthenticationToken(
+                    usuarioDB.getUsername(),
+                    auth.getCredentials(),
+                    auth.getAuthorities()
+            );
+
+            SecurityContextHolder.getContext().setAuthentication(nuevaAuth);
+
+            model.addAttribute("usuario", usuarioDB);
         }
 
-        return "redirect:/home";
+        return "home";
     }
 }

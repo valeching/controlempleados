@@ -41,6 +41,37 @@ border-radius:6px;
 background:#3498db;
 }
 
+/* MENU LINKS */
+
+.menu-links{
+display:flex;
+gap:30px;
+}
+
+/* FORM LOGOUT */
+
+.logout-form{
+margin-left:auto;
+display:flex;
+align-items:center;
+}
+
+/* BOTON LOGOUT COMO LINK DEL MENU */
+
+.logout-link{
+background:none;
+border:none;
+color:white;
+font-weight:bold;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+.logout-link:hover{
+background:#3498db;
+}
 /* CONTAINERS */
 
 .container{
@@ -112,11 +143,14 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-/* INPUT BLOQUEADO */
 
 .cedula-bloqueada{
-background:#eee;
+background:#e6e6e6;
+color:#666;
+border:1px solid #ccc;
+cursor:not-allowed;
 }
+
 
 /* BOTONES */
 

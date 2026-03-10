@@ -23,44 +23,61 @@ public class EmpleadoController {
         model.addAttribute("empleados", empleadoService.listar());
         return "empleados";
     }
-    // Para mostrar el formulario de creación de un nuevo empleado, simplemente pasamos un nuevo objeto Empleado al modelo para que se pueda llenar en el formulario
+
     @GetMapping("/guardar")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("empleado", new Empleado());
         return "empleado-form";
     }
-    // Para guardar un nuevo empleado, recibimos el objeto Empleado desde el formulario y lo pasamos al servicio para crear el empleado
-    @PostMapping("/guardar")
-    public String crear(@ModelAttribute("empleado") Empleado empleado, BindingResult br) {
 
-        if (br.hasErrors()){
+    @PostMapping("/guardar")
+    public String crear(@ModelAttribute("empleado") Empleado empleado,
+                        BindingResult br,
+                        Model model) {
+
+        if (br.hasErrors()) {
             return "empleado-form";
+        }
+
+        // Validaciones solo para nuevo empleado
+        if (empleado.getId() == null) {
+
+            if (empleadoService.existeCedula(empleado.getCedula())) {
+                model.addAttribute("error", "Esa cédula ya existe");
+                return "empleado-form";
+            }
+
+            if (empleadoService.existeCorreo(empleado.getCorreo())) {
+                model.addAttribute("error", "Ese correo ya existe");
+                return "empleado-form";
+            }
+
+            if (empleadoService.existeTelefono(empleado.getTelefono())) {
+                model.addAttribute("error", "Ese teléfono ya existe");
+                return "empleado-form";
+            }
         }
 
         empleadoService.crear(empleado);
 
         return "redirect:/empleados";
     }
-     // Para mostrar el formulario de edición de un empleado existente, primero obtenemos el empleado por su ID y lo pasamos al modelo para que se pueda llenar en el formulario
+
     @GetMapping("/editar/{id}")
-       public String editar(@PathVariable Long id, Model model){
+    public String editar(@PathVariable Long id, Model model) {
 
         Empleado empleado = empleadoService.buscarPorId(id);
 
         model.addAttribute("empleado", empleado);
 
         return "empleado-form";
+    }
 
-    }   
-     // Para eliminar un empleado, simplemente recibimos el ID del empleado a eliminar y lo pasamos al servicio para eliminarlo
     @GetMapping("/eliminar/{id}")
-        public String eliminar(@PathVariable Long id){
+    public String eliminar(@PathVariable Long id) {
 
         empleadoService.eliminar(id);
 
-        
         return "redirect:/empleados";
-
     }
-
 }
