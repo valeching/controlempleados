@@ -207,3 +207,10 @@ a{
 a:hover{
     text-decoration:none;
 }
+
+.mensaje-error{
+    color:#ff4d4d;
+    font-weight:bold;
+    text-align:center;
+    margin:15px auto 20px auto;
+}

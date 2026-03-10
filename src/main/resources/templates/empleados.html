@@ -36,8 +36,9 @@
                     <button type="button">Editar</button>
                 </a>
 
-                <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
-                    <button type="button">Eliminar</button>
+                <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}"
+                  onclick="return confirmarEliminar()">
+                    <button class="btn-eliminar">Eliminar</button>
                 </a>
             </td>
         </tr>
@@ -49,4 +50,9 @@
     <a th:href="@{/home}">Volver</a>
 
 </body>
+<script>
+function confirmarEliminar(){
+    return confirm("¿Seguro que deseas eliminar este empleado?");
+}
+</script>
 </html>

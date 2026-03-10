@@ -39,21 +39,54 @@ public class EmpleadoController {
             return "empleado-form";
         }
 
+        // SI ES NUEVO
         if (empleado.getId() == null) {
 
             if (empleadoService.existeCedula(empleado.getCedula())) {
-                model.addAttribute("error", "Esa cédula ya existe");
+                model.addAttribute("error", "La cédula ya existe");
                 return "empleado-form";
             }
 
             if (empleadoService.existeCorreo(empleado.getCorreo())) {
-                model.addAttribute("error", "Ese correo ya existe");
+                model.addAttribute("error", "El correo ya existe");
                 return "empleado-form";
             }
 
             if (empleadoService.existeTelefono(empleado.getTelefono())) {
-                model.addAttribute("error", "Ese teléfono ya existe");
+                model.addAttribute("error", "El teléfono ya existe");
                 return "empleado-form";
+            }
+
+        } else {
+
+            // SI ES EDICIÓN
+            Empleado actual = empleadoService.buscarPorId(empleado.getId());
+
+            if (!empleado.getCedula().equals(actual.getCedula())) {
+
+                if (empleadoService.existeCedula(empleado.getCedula())) {
+                    model.addAttribute("error", "La cédula ya existe");
+                    return "empleado-form";
+                }
+
+            }
+
+            if (!empleado.getCorreo().equals(actual.getCorreo())) {
+
+                if (empleadoService.existeCorreo(empleado.getCorreo())) {
+                    model.addAttribute("error", "El correo ya existe");
+                    return "empleado-form";
+                }
+
+            }
+
+            if (!empleado.getTelefono().equals(actual.getTelefono())) {
+
+                if (empleadoService.existeTelefono(empleado.getTelefono())) {
+                    model.addAttribute("error", "El teléfono ya existe");
+                    return "empleado-form";
+                }
+
             }
         }
 
