@@ -1,4 +1,4 @@
-/* Reset básico */
+/* RESET */
 *{
     margin:0;
     padding:0;
@@ -6,117 +6,133 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Fondo general */
+/* FONDO GENERAL */
 body{
-    background: linear-gradient(135deg,#2c3e50,#4ca1af);
+    background: linear-gradient(120deg,#2c5364,#203a43,#0f2027);
     min-height:100vh;
-    display: block;
+    display:flex;
     justify-content:center;
     align-items:center;
 }
 
-/* Contenedor principal */
+/* CONTENEDOR PRINCIPAL */
 .container{
     background:white;
     padding:40px;
-    border-radius:10px;
-    width:400px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    border-radius:12px;
+    width:420px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* Títulos */
-h1,h2,a{
-    text-align:center;
+/* TITULOS */
+h2{
+    margin-bottom:10px;
+}
+
+.rol{
     margin-bottom:20px;
-    color:#ffffff;
 }
 
-/* Inputs */
-input, select{
-    width:100%;
+/* FORMULARIOS */
+form{
+    display:flex;
+    flex-direction:column;
+}
+
+/* LABELS */
+label{
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+/* INPUTS */
+input{
     padding:10px;
-    margin:10px 0;
+    border-radius:6px;
     border:1px solid #ccc;
-    border-radius:5px;
+    font-size:14px;
 }
 
-/* Botones */
+/* CEDULA BLOQUEADA */
+.cedula-bloqueada{
+    background:#eee;
+    cursor:not-allowed;
+}
+
+/* BOTONES */
 button{
-    width:10%;
-    padding:10px;
-    background:#3498db;
+    margin-top:20px;
+    padding:12px;
     border:none;
+    border-radius:6px;
+    background:#3498db;
     color:white;
-    font-size:16px;
-    border-radius:5px;
+    font-size:15px;
     cursor:pointer;
     transition:0.3s;
-    margin: 0 10px;
 }
 
 button:hover{
     background:#2980b9;
 }
 
-/* Botón eliminar */
-.btn-delete{
+/* PANEL ADMIN */
+.admin-panel{
+    margin-top:40px;
+    padding:20px;
+    background:#f4f4f4;
+    border-radius:10px;
+}
+
+/* BOTONES DEL ADMIN */
+.admin-panel a{
+    display:block;
+    margin-top:15px;
+}
+
+.admin-panel button{
+    width:100%;
+}
+
+/* BOTON SALIR */
+.btn-salir{
     background:#e74c3c;
 }
 
-.btn-delete:hover{
+.btn-salir:hover{
     background:#c0392b;
 }
 
-/* Botón editar */
-.btn-edit{
-    background:#f39c12;
-}
+/* NAV SUPERIOR */
 
-.btn-edit:hover{
-    background:#d68910;
-}
-
-/* Tablas */
-table{
+.menu-admin{
+    position:fixed;
+    top:0;
+    left:0;
     width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
+    background:#1f2d3d;
+    padding:15px 0;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+    z-index:1000;
 }
 
-table th{
-    background:#3498db;
+/* LINKS DEL MENU */
+
+.menu-admin a{
     color:white;
-    padding:10px;
-}
-
-table td{
-    padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:center;
-}
-
-table tr:hover{
-    background:#f2f2f2;
-}
-
-/* Links */
-a{
     text-decoration:none;
-    color:#3498db;
+    font-weight:bold;
+    padding:8px 15px;
+    border-radius:6px;
+    transition:0.3s;
 }
 
-a:hover{
-    text-decoration:underline;
-}
+/* HOVER */
 
-/* Panel admin */
-.admin-panel{
-    width:90%;
-    max-width:1000px;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+.menu-admin a:hover{
+    background:#3498db;
 }
-

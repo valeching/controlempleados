@@ -22,16 +22,20 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String correo;
+
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
     public Usuario() {}
 
-    public Usuario(String cedula, String nombre, String username, String password, Rol rol) {
+    public Usuario(String cedula, String nombre, String username, String password, String correo, Rol rol) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.username = username;
         this.password = password;
+        this.correo = correo;
         this.rol = rol;
     }
 
@@ -69,6 +73,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public Rol getRol() {

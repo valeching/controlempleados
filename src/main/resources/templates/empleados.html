@@ -1,37 +1,49 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control de Empleados</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-<body>
+<body class="empleados">
     <h2>Lista de Empleados</h2>
 
-    <a th:href="@{/empleados/guardar}">Nuevo empleado</a>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a href="/empleados/guardar">Nuevo Empleado</a>
+    </div>
 
     <br><br>
 
     <table border="1">
 
-    <tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Correo</th>
-    <th>Acciones</th>
-    </tr>
+        <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+        </tr>
 
-    <tr th:each="e : ${empleados}">
+        <tr th:each="e : ${empleados}">
 
     <td th:text="${e.id}"></td>
     <td th:text="${e.nombre}"></td>
     <td th:text="${e.correo}"></td>
 
     <td>
-    <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
-    Eliminar
-    </a>
+
+        <div sec:authorize="hasRole('ADMIN')">
+
+        <a th:href="@{/empleados/editar/{id}(id=${e.id})}">
+        <button>Editar</button>
+        </a>
+
+        <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
+        <button>Eliminar</button>
+        </a>
+
+        </div>
+
     </td>
 
     </tr>

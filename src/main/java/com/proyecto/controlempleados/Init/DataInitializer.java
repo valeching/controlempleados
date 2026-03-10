@@ -24,6 +24,7 @@ public class DataInitializer {
                         "Administrador",
                         "admin",
                         encoder.encode("admin123"),
+                        "admin@empresa.com",
                         Rol.ADMIN
                 );
 

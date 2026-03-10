@@ -6,41 +6,43 @@
     <title>Control de Empleados</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-<body>
+<body class="empleado-form">
     <h2>Registrar Empleado</h2>
 
     <form th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
 
-    <label>Nombre</label>
-    <input type="text" th:field="*{nombre}" required>
+        <input type="hidden" th:field="*{id}">
 
-    <label>Apellidos</label>
-    <input type="text" th:field="*{apellidos}" required>
+        <label>Nombre</label>
+        <input type="text" th:field="*{nombre}" required>
 
-    <label>Cédula</label>
-    <input type="text" th:field="*{cedula}" required>
+        <label>Apellidos</label>
+        <input type="text" th:field="*{apellidos}" required>
 
-    <label>Correo</label>
-    <input type="email" th:field="*{correo}" required>
+        <label>Cédula</label>
+        <input type="text" th:field="*{cedula}" required>
 
-    <label>Teléfono</label>
-    <input type="text" th:field="*{telefono}" required>
+        <label>Correo</label>
+        <input type="email" th:field="*{correo}" required>
 
-    <label>Edad</label>
-    <input type="number" th:field="*{edad}" required>
+        <label>Teléfono</label>
+        <input type="text" th:field="*{telefono}" required>
 
-    <label>Puesto</label>
-    <input type="text" th:field="*{puesto}" required>
+        <label>Edad</label>
+        <input type="number" th:field="*{edad}" required>
 
-    <br><br>
+        <label>Puesto</label>
+        <input type="text" th:field="*{puesto}" required>
 
-    <button type="submit">Guardar</button>
+        <br><br>
 
-    <button type="button" onclick="window.location.href='/empleados'">
+        <button type="submit">Guardar</button>
+
+        <button type="button" onclick="window.location.href='/empleados'">
         Volver
-    </button>
+        </button>
 
-</form>
+    </form>
 
  
 

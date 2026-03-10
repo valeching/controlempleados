@@ -22,4 +22,12 @@ public class EmpleadoService {
     public Empleado crear(Empleado e){
         return repo.save(e);
     }
+
+    public Empleado buscarPorId(Long id){
+        return repo.findById(id).orElse(null);
+    }
+
+    public void eliminar(Long id){
+        repo.deleteById(id);
+    }
 }

@@ -41,5 +41,26 @@ public class EmpleadoController {
 
         return "redirect:/empleados";
     }
+     // Para mostrar el formulario de edición de un empleado existente, primero obtenemos el empleado por su ID y lo pasamos al modelo para que se pueda llenar en el formulario
+    @GetMapping("/editar/{id}")
+       public String editar(@PathVariable Long id, Model model){
+
+        Empleado empleado = empleadoService.buscarPorId(id);
+
+        model.addAttribute("empleado", empleado);
+
+        return "empleado-form";
+
+    }   
+     // Para eliminar un empleado, simplemente recibimos el ID del empleado a eliminar y lo pasamos al servicio para eliminarlo
+    @GetMapping("/eliminar/{id}")
+        public String eliminar(@PathVariable Long id){
+
+        empleadoService.eliminar(id);
+
+        
+        return "redirect:/empleados";
+
+    }
 
 }
