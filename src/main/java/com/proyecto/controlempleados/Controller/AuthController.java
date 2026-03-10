@@ -59,7 +59,11 @@ public String home(Authentication auth, Model model){
 }
 
     @PostMapping("/perfil/actualizar")
-        public String actualizarPerfil(@ModelAttribute Usuario usuario){
+    public String actualizarPerfil(@ModelAttribute Usuario usuario){
+
+        if(usuario.getId() == null){
+            return "redirect:/home";
+        }
 
         Usuario usuarioDB = usuarioRepository.findById(usuario.getId()).orElse(null);
 
@@ -68,6 +72,8 @@ public String home(Authentication auth, Model model){
             usuarioDB.setNombre(usuario.getNombre());
             usuarioDB.setUsername(usuario.getUsername());
             usuarioDB.setCorreo(usuario.getCorreo());
+
+            // NO se modifica la cedula
 
             usuarioRepository.save(usuarioDB);
         }

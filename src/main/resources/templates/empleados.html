@@ -6,12 +6,8 @@
     <title>Control de Empleados</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-<body class="empleados">
+<body class="empleados-page">
     <h2>Lista de Empleados</h2>
-
-    <div sec:authorize="hasRole('ADMIN')">
-        <a href="/empleados/guardar">Nuevo Empleado</a>
-    </div>
 
     <br><br>
 
@@ -31,9 +27,6 @@
     <td th:text="${e.correo}"></td>
 
     <td>
-
-        <div sec:authorize="hasRole('ADMIN')">
-
         <a th:href="@{/empleados/editar/{id}(id=${e.id})}">
         <button>Editar</button>
         </a>
@@ -41,9 +34,6 @@
         <a th:href="@{/empleados/eliminar/{id}(id=${e.id})}">
         <button>Eliminar</button>
         </a>
-
-        </div>
-
     </td>
 
     </tr>

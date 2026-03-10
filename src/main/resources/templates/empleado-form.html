@@ -6,10 +6,12 @@
     <title>Control de Empleados</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-<body class="empleado-form">
-    <h2>Registrar Empleado</h2>
+<body class="empleado-form-page">
 
-    <form th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
+    <h2>Registrar un nuevo empleado</h2>
+    
+
+    <form class="empleado-form" th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
 
         <input type="hidden" th:field="*{id}">
 
@@ -38,7 +40,7 @@
 
         <button type="submit">Guardar</button>
 
-        <button type="button" onclick="window.location.href='/empleados'">
+        <button type="button" onclick="window.location.href='/home'">
         Volver
         </button>
 

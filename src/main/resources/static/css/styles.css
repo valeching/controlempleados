@@ -1,138 +1,181 @@
 /* RESET */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
 }
 
 /* FONDO GENERAL */
+
 body{
-    background: linear-gradient(120deg,#2c5364,#203a43,#0f2027);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+background: linear-gradient(120deg,#1f3c44,#1a2f35);
+min-height:100vh;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* NAV */
+
+.menu-admin{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#1f2d3d;
+padding:15px;
+display:flex;
+justify-content:center;
+gap:30px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.menu-admin a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+padding:8px 14px;
+border-radius:6px;
+}
+
+.menu-admin a:hover{
+background:#3498db;
+}
+
+/* CONTAINERS */
+
 .container{
-    background:white;
-    padding:40px;
-    border-radius:12px;
-    width:420px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+margin:auto;
+margin-top:120px;
+}
+
+/* TAMAÑOS SEGUN PAGINA */
+
+.home-page .container{
+width:420px;
+}
+
+.login-page .form {
+width:20%;
+margin:auto;
+margin-top: 5%;
+color: #f5f5f5;
+}
+
+.empleado-form-page .empleado-form{
+width:50%;
+margin: auto;
+color: #fff;
+}
+
+.usuario-form-page .container{
+width:500px;
+}
+
+.empleados-page .container{
+width:900px;
 }
 
 /* TITULOS */
-h2{
-    margin-bottom:10px;
+
+.empleado-form-page h2{
+text-align:center;
+margin-top:30px;
+color: #ffffff;
 }
 
-.rol{
-    margin-bottom:20px;
+h1,h2,h3{
+margin-bottom:20px;
+text-align:center;
+color: #000;
 }
 
 /* FORMULARIOS */
+
 form{
-    display:flex;
-    flex-direction:column;
+display:flex;
+flex-direction:column;
 }
 
-/* LABELS */
 label{
-    margin-top:15px;
-    margin-bottom:5px;
-    font-weight:bold;
+margin-top:15px;
+font-weight:bold;
 }
 
-/* INPUTS */
 input{
-    padding:10px;
-    border-radius:6px;
-    border:1px solid #ccc;
-    font-size:14px;
+padding:10px;
+margin-top:5px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
-/* CEDULA BLOQUEADA */
+/* INPUT BLOQUEADO */
+
 .cedula-bloqueada{
-    background:#eee;
-    cursor:not-allowed;
+background:#eee;
 }
 
 /* BOTONES */
+
 button{
-    margin-top:20px;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#3498db;
-    color:white;
-    font-size:15px;
-    cursor:pointer;
-    transition:0.3s;
+margin-top:20px;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#3498db;
+color:white;
+cursor:pointer;
 }
 
 button:hover{
-    background:#2980b9;
-}
-
-/* PANEL ADMIN */
-.admin-panel{
-    margin-top:40px;
-    padding:20px;
-    background:#f4f4f4;
-    border-radius:10px;
-}
-
-/* BOTONES DEL ADMIN */
-.admin-panel a{
-    display:block;
-    margin-top:15px;
-}
-
-.admin-panel button{
-    width:100%;
+background:#2980b9;
 }
 
 /* BOTON SALIR */
+
 .btn-salir{
-    background:#e74c3c;
+background:#e74c3c;
 }
 
 .btn-salir:hover{
-    background:#c0392b;
+background:#c0392b;
 }
 
-/* NAV SUPERIOR */
+/* TABLA EMPLEADOS */
 
-.menu-admin{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    background:#1f2d3d;
-    padding:15px 0;
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.2);
-    z-index:1000;
+.empleados-page table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
 }
 
-/* LINKS DEL MENU */
-
-.menu-admin a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    padding:8px 15px;
-    border-radius:6px;
-    transition:0.3s;
+.empleados-page th{
+background:#2c3e50;
+color:white;
+padding:10px;
 }
 
-/* HOVER */
+.empleados-page td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
 
-.menu-admin a:hover{
-    background:#3498db;
+.empleados-page tr:hover{
+background:#f5f5f5;
+}
+
+/* LINKS */
+
+a{
+color:#3498db;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:none;
 }
