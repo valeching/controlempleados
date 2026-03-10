@@ -8,10 +8,19 @@
 </head>
 <body class="empleado-form-page">
 
+    <nav class="menu-admin">
+
+        <div class="menu-links">
+            <a href="/home">Inicio</a>
+            <a href="/empleados">Administrar Empleados</a>
+        </div>
+
+    </nav>  
+
     <h2>Registrar un nuevo empleado</h2>
     
 
-    <form class="empleado-form" th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
+    <form class="container" th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
 
         <input type="hidden" th:field="*{id}">
 

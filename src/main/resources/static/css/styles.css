@@ -1,215 +1,209 @@
-/* RESET */
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-/* FONDO GENERAL */
+
 
 body{
-background: linear-gradient(120deg,#1f3c44,#1a2f35);
-min-height:100vh;
+    background: linear-gradient(120deg,#1f3c44,#1a2f35);
+    min-height:100vh;
 }
 
-/* NAV */
+
 
 .menu-admin{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:#1f2d3d;
-padding:15px;
-display:flex;
-justify-content:center;
-gap:30px;
-box-shadow:0 3px 8px rgba(0,0,0,0.2);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#1f2d3d;
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
 }
 
 .menu-admin a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-padding:8px 14px;
-border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    padding:8px 14px;
+    border-radius:6px;
 }
 
 .menu-admin a:hover{
-background:#3498db;
+    background:#3498db;
 }
 
-/* MENU LINKS */
 
 .menu-links{
-display:flex;
-gap:30px;
+    display:flex;
+    gap:30px;
 }
 
-/* FORM LOGOUT */
 
 .logout-form{
-margin-left:auto;
-display:flex;
-align-items:center;
+    margin-left:auto;
+    display:flex;
+    align-items:center;
 }
-
-/* BOTON LOGOUT COMO LINK DEL MENU */
-
-.logout-link{
-background:none;
-border:none;
-color:white;
-font-weight:bold;
-padding:8px 14px;
-border-radius:6px;
-cursor:pointer;
-font-size:16px;
-}
-
-.logout-link:hover{
-background:#3498db;
-}
-/* CONTAINERS */
 
 .container{
-background:white;
-padding:40px;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-margin:auto;
-margin-top:120px;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin:auto;
+    margin-top:120px;
 }
-
-/* TAMAÑOS SEGUN PAGINA */
 
 .home-page .container{
-width:420px;
+    width:420px;
 }
 
-.login-page .form {
-width:20%;
-margin:auto;
-margin-top: 5%;
-color: #f5f5f5;
+.registro-page .container{
+    width:420px;
 }
 
-.empleado-form-page .empleado-form{
-width:50%;
-margin: auto;
-color: #fff;
+.registro-page h2{
+    text-align:center;
+    color:#000;
+    margin-bottom:20px;
+}
+
+.login-page .container {
+    width:450px;
+    margin:auto;
+    margin-top: 5%;
+    color: #f5f5f5;
+}
+
+.login-page h2{
+    text-align:center;
+    margin-top:0;
+    margin-bottom:20px;
+    color: #000;
+}   
+
+.empleado-form-page .container{
+    width:50%;
+    margin: auto;
+    color: #fff;
+}
+
+.empleado-form-page{
+    padding-top: 100px;
+}
+
+.empleado-form-page h2{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .usuario-form-page .container{
-width:500px;
+    width:500px;
 }
 
 .empleados-page .container{
-width:900px;
+    width:900px;
 }
 
-/* TITULOS */
 
 .empleado-form-page h2{
-text-align:center;
-margin-top:30px;
-color: #ffffff;
+    text-align:center;
+    margin-top:30px;
+    color: #ffffff;
 }
 
 h1,h2,h3{
-margin-bottom:20px;
-text-align:center;
-color: #000;
+    margin-bottom:20px;
+    text-align:center;
+    color: #000;
 }
 
-/* FORMULARIOS */
-
 form{
-display:flex;
-flex-direction:column;
+    display:flex;
+    flex-direction:column;
 }
 
 label{
-margin-top:15px;
-font-weight:bold;
+    margin-top:15px;
+    font-weight:bold;
+    color: #000;
 }
 
 input{
-padding:10px;
-margin-top:5px;
-border-radius:6px;
-border:1px solid #ccc;
+    padding:10px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
 }
 
 
 .cedula-bloqueada{
-background:#e6e6e6;
-color:#666;
-border:1px solid #ccc;
-cursor:not-allowed;
+    background:#e6e6e6;
+    color:#666;
+    border:1px solid #ccc;
+    cursor:not-allowed;
 }
 
 
-/* BOTONES */
-
 button{
-margin-top:20px;
-padding:12px;
-border:none;
-border-radius:6px;
-background:#3498db;
-color:white;
-cursor:pointer;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#3498db;
+    color:white;
+    cursor:pointer;
 }
 
 button:hover{
-background:#2980b9;
+    background:#2980b9;
 }
 
-/* BOTON SALIR */
-
 .btn-salir{
-background:#e74c3c;
+    background:#e74c3c;
 }
 
 .btn-salir:hover{
-background:#c0392b;
+    background:#c0392b;
 }
 
-/* TABLA EMPLEADOS */
-
 .empleados-page table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-background:white;
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
 }
 
 .empleados-page th{
-background:#2c3e50;
-color:white;
-padding:10px;
+    background:#2c3e50;
+    color:white;
+    padding:10px;
 }
 
 .empleados-page td{
-padding:10px;
-border-bottom:1px solid #ddd;
-text-align:center;
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
 }
 
 .empleados-page tr:hover{
-background:#f5f5f5;
+    background:#f5f5f5;
 }
 
-/* LINKS */
-
 a{
-color:#3498db;
-text-decoration:none;
+    color:#3498db;
+    text-decoration:none;
 }
 
 a:hover{
-text-decoration:none;
+    text-decoration:none;
 }

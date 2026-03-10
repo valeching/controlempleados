@@ -39,7 +39,6 @@ public class EmpleadoController {
             return "empleado-form";
         }
 
-        // Validaciones solo para nuevo empleado
         if (empleado.getId() == null) {
 
             if (empleadoService.existeCedula(empleado.getCedula())) {
