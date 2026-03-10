@@ -23,14 +23,14 @@ public class EmpleadoController {
         model.addAttribute("empleados", empleadoService.listar());
         return "empleados";
     }
-
-    @GetMapping("/nuevo")
+    // Para mostrar el formulario de creación de un nuevo empleado, simplemente pasamos un nuevo objeto Empleado al modelo para que se pueda llenar en el formulario
+    @GetMapping("/guardar")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("empleado", new Empleado());
         return "empleado-form";
     }
-
-    @PostMapping("/nuevo")
+    // Para guardar un nuevo empleado, recibimos el objeto Empleado desde el formulario y lo pasamos al servicio para crear el empleado
+    @PostMapping("/guardar")
     public String crear(@ModelAttribute("empleado") Empleado empleado, BindingResult br) {
 
         if (br.hasErrors()){

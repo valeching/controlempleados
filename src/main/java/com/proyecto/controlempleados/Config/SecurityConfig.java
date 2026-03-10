@@ -19,8 +19,17 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/login","/registro","/css/**").permitAll()
+
+                    // Archivos estáticos permitidos para todos
+                    .requestMatchers("/css/**","/js/**","/images/**").permitAll()
+
+                    // Páginas de login y registro 
+                    .requestMatchers("/login","/registro").permitAll()
+
+                    // Solo administrador puede acceder a rutas bajo /admin/**
                     .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                    // TODAS las demás requieren autenticación
                     .anyRequest().authenticated()
             )
             .formLogin(login -> login
@@ -30,6 +39,7 @@ public class SecurityConfig {
             )
             .logout(logout -> logout
                     .logoutSuccessUrl("/login")
+                    .permitAll()
             );
 
         return http.build();

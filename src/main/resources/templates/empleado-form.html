@@ -9,25 +9,40 @@
 <body>
     <h2>Registrar Empleado</h2>
 
-    <form th:action="@{/empleados/nuevo}" method="post">
+    <form th:action="@{/empleados/guardar}" th:object="${empleado}" method="post">
 
     <label>Nombre</label>
-    <input type="text" name="nombre" required>
+    <input type="text" th:field="*{nombre}" required>
 
-    <br><br>
+    <label>Apellidos</label>
+    <input type="text" th:field="*{apellidos}" required>
+
+    <label>Cédula</label>
+    <input type="text" th:field="*{cedula}" required>
 
     <label>Correo</label>
-    <input type="email" name="correo" required>
+    <input type="email" th:field="*{correo}" required>
+
+    <label>Teléfono</label>
+    <input type="text" th:field="*{telefono}" required>
+
+    <label>Edad</label>
+    <input type="number" th:field="*{edad}" required>
+
+    <label>Puesto</label>
+    <input type="text" th:field="*{puesto}" required>
 
     <br><br>
 
     <button type="submit">Guardar</button>
 
-    </form>
+    <button type="button" onclick="window.location.href='/empleados'">
+        Volver
+    </button>
 
-    <br>
+</form>
 
-    <a th:href="@{/empleados}">Volver</a>
+ 
 
 </body>
 </html>

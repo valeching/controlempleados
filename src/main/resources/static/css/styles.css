@@ -1,0 +1,122 @@
+/* Reset básico */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fondo general */
+body{
+    background: linear-gradient(135deg,#2c3e50,#4ca1af);
+    min-height:100vh;
+    display: block;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Contenedor principal */
+.container{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    width:400px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Títulos */
+h1,h2,a{
+    text-align:center;
+    margin-bottom:20px;
+    color:#ffffff;
+}
+
+/* Inputs */
+input, select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+/* Botones */
+button{
+    width:10%;
+    padding:10px;
+    background:#3498db;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+    transition:0.3s;
+    margin: 0 10px;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+/* Botón eliminar */
+.btn-delete{
+    background:#e74c3c;
+}
+
+.btn-delete:hover{
+    background:#c0392b;
+}
+
+/* Botón editar */
+.btn-edit{
+    background:#f39c12;
+}
+
+.btn-edit:hover{
+    background:#d68910;
+}
+
+/* Tablas */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+}
+
+table th{
+    background:#3498db;
+    color:white;
+    padding:10px;
+}
+
+table td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+table tr:hover{
+    background:#f2f2f2;
+}
+
+/* Links */
+a{
+    text-decoration:none;
+    color:#3498db;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* Panel admin */
+.admin-panel{
+    width:90%;
+    max-width:1000px;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+

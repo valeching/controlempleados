@@ -12,17 +12,17 @@
         <form th:action="@{/admin/usuarios/guardar}" method="post">
 
         <label>Cédula</label>
-        <input type="text" name="cedula" required>
+        <input type="text" th:field="*{cedula}" readonly>
 
         <br><br>
 
         <label>Username</label>
-        <input type="text" name="username" required>
+        <input type="text" th:field="*{username}" required>
 
         <br><br>
 
         <label>Password</label>
-        <input type="password" name="password" required>
+        <input type="password" th:field="*{password}" required>
 
         <br><br>
 

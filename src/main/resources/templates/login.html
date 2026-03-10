@@ -7,9 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-    <h2>Iniciar sesión</h2>
+    
 
     <form th:action="@{/login}" method="post">
+
+        <h2>Iniciar sesión</h2>
 
         <label>Usuario</label>
         <input type="text" name="username" required>
