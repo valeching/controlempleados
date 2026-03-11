@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import com.proyecto.controlempleados.model.Empleado;
 import com.proyecto.controlempleados.service.EmpleadoService;
 
-//
+
 @Controller
 @RequestMapping("/empleados")
 public class EmpleadoController {
@@ -38,7 +37,7 @@ public String guardar(@ModelAttribute("empleado") Empleado empleado,
 
     System.out.println("ID RECIBIDO: " + empleado.getId());
 
-    // LIMPIAR ESPACIOS
+    //evitar espacios en blanco 
     empleado.setCedula(empleado.getCedula().trim());
     empleado.setCorreo(empleado.getCorreo().trim());
     empleado.setTelefono(empleado.getTelefono().trim());

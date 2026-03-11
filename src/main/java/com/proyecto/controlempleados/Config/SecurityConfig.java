@@ -6,11 +6,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-//aca se conf la seguridad de la app
+
 @Configuration
 public class SecurityConfig {
 
-    // aqui se agregan las configuraciones de seguridad, como las rutas públicas, privadas, roles, etc
+
     @Bean 
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
