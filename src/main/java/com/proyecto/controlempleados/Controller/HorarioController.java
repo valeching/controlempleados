@@ -1,84 +1,81 @@
 package com.proyecto.controlempleados.Controller;
+
+import com.proyecto.controlempleados.model.Horario;
 import com.proyecto.controlempleados.model.Usuario;
-import com.proyecto.controlempleados.service.HorarioService;
 import com.proyecto.controlempleados.repository.UsuarioRepository;
+import com.proyecto.controlempleados.service.HorarioService;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/horarios")
 public class HorarioController {
 
-    private final HorarioService horarioService;
+    private final HorarioService service;
     private final UsuarioRepository usuarioRepo;
 
-    public HorarioController(HorarioService horarioService, UsuarioRepository usuarioRepo) {
-        this.horarioService = horarioService;
+    public HorarioController(HorarioService service, UsuarioRepository usuarioRepo) {
+        this.service = service;
         this.usuarioRepo = usuarioRepo;
     }
 
-    // 🔹 REGISTRAR ENTRADA
-    @PostMapping("/entrada")
-    public String entrada(Authentication auth, RedirectAttributes redirectAttributes) {
-        try {
-            Usuario u = usuarioRepo.findByUsername(auth.getName())
-                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-            horarioService.registrarEntrada(u);
-
-            redirectAttributes.addFlashAttribute("success", "Entrada registrada correctamente");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        }
-
-        return "redirect:/horarios";
-    }
-
-    // 🔹 REGISTRAR SALIDA
-    @PostMapping("/salida")
-    public String salida(Authentication auth, RedirectAttributes redirectAttributes) {
-        try {
-            Usuario u = usuarioRepo.findByUsername(auth.getName())
-                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-            horarioService.registrarSalida(u);
-
-            redirectAttributes.addFlashAttribute("success", "Salida registrada correctamente");
-
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        }
-
-        return "redirect:/horarios";
-    }
-
-    // 🔹 VER HORARIOS
+    
     @GetMapping
     public String verHorarios(Authentication auth, Model model) {
 
-        Usuario u = usuarioRepo.findByUsername(auth.getName())
+        Usuario usuario = usuarioRepo.findByUsername(auth.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-       
-        if (u.getRol().name().equals("ADMIN")) {
-            model.addAttribute("horarios", horarioService.todos());
+        List<Horario> horarios;
+
+        
+        if (usuario.getRol().name().equals("ADMIN")) {
+            horarios = service.listarTodos();
         } else {
-            model.addAttribute("horarios", horarioService.misHorarios(u));
+            
+            horarios = service.listarPorUsuario(usuario);
         }
 
-       
-        String estado = horarioService.estado(u);
-        model.addAttribute("estado", estado);
-
-  
-        boolean enLinea = estado.equals("En línea");
-        model.addAttribute("enLinea", enLinea);
+        model.addAttribute("horarios", horarios);
 
         return "horarios";
+    }
+
+    @PostMapping("/entrada")
+    public String entrada(Authentication auth, Model model) {
+
+        try {
+            Usuario usuario = usuarioRepo.findByUsername(auth.getName())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+            service.registrarEntrada(usuario);
+
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+
+        return "redirect:/horarios";
+    }
+
+    
+    @PostMapping("/salida")
+    public String salida(Authentication auth, Model model) {
+
+        try {
+            Usuario usuario = usuarioRepo.findByUsername(auth.getName())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+            service.registrarSalida(usuario);
+
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+
+        return "redirect:/horarios";
     }
 }

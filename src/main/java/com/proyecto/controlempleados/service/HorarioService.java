@@ -3,73 +3,72 @@ package com.proyecto.controlempleados.service;
 import com.proyecto.controlempleados.model.Horario;
 import com.proyecto.controlempleados.model.Usuario;
 import com.proyecto.controlempleados.repository.HorarioRepository;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class HorarioService {
 
-    private final HorarioRepository horarioRepo;
+    private final HorarioRepository repo;
 
-    public HorarioService(HorarioRepository horarioRepo) {
-        this.horarioRepo = horarioRepo;
+    public HorarioService(HorarioRepository repo) {
+        this.repo = repo;
     }
 
-    // 🔹 REGISTRAR ENTRADA
-    public void registrarEntrada(Usuario usuario) {
+    public List<Horario> listarTodos() {
+        return repo.findAll();
+    }
 
-        if (horarioRepo.findTopByUsuarioAndHoraSalidaIsNullOrderByHoraEntradaDesc(usuario).isPresent()) {
-            throw new RuntimeException("Ya tienes una entrada sin salida");
+    public List<Horario> listarPorUsuario(Usuario usuario) {
+        return repo.findByUsuario(usuario);
+    }
+  
+    public Horario registrarEntrada(Usuario usuario) {
+
+        Optional<Horario> activoOpt =
+                repo.findTopByUsuarioAndHoraSalidaIsNullOrderByHoraEntradaDesc(usuario);
+
+        
+        if (activoOpt.isPresent()) {
+            throw new RuntimeException("Ya tienes una entrada activa sin salida.");
         }
 
         Horario h = new Horario();
         h.setUsuario(usuario);
         h.setHoraEntrada(LocalDateTime.now());
 
-        horarioRepo.save(h);
+        return repo.save(h);
     }
 
     // 🔹 REGISTRAR SALIDA
-    public void registrarSalida(Usuario usuario) {
+    public Horario registrarSalida(Usuario usuario) {
 
-        Horario h = horarioRepo
-        .findTopByUsuarioAndHoraSalidaIsNullOrderByHoraEntradaDesc(usuario)
-        .orElseThrow(() -> new RuntimeException("No hay entrada registrada"));
+        Optional<Horario> activoOpt =
+                repo.findTopByUsuarioAndHoraSalidaIsNullOrderByHoraEntradaDesc(usuario);
 
-    
-        if (h.getHoraSalida() != null) {
-                throw new RuntimeException("Esta entrada ya tiene salida");
+        if (activoOpt.isEmpty()) {
+            throw new RuntimeException("No puedes marcar salida sin una entrada.");
         }
 
-        
-        LocalDateTime salida = LocalDateTime.now();
+        Horario activo = activoOpt.get();
 
-        if (salida.isBefore(h.getHoraEntrada())) {
-            throw new RuntimeException("La salida no puede ser antes de la entrada");
+        if (LocalDateTime.now().isBefore(activo.getHoraEntrada())) {
+            throw new RuntimeException("La salida no puede ser antes de la entrada.");
         }
 
-        h.setHoraSalida(salida);
-        horarioRepo.save(h);
+        activo.setHoraSalida(LocalDateTime.now());
+
+        return repo.save(activo);
     }
 
-    
-    public List<Horario> misHorarios(Usuario usuario) {
-        return horarioRepo.findByUsuario(usuario);
-    }
-
-    
-    public List<Horario> todos() {
-        return horarioRepo.findAll();
-    }
-
-    
-    public String estado(Usuario usuario) {
-        boolean enLinea = horarioRepo
-                .findTopByUsuarioAndHoraSalidaIsNullOrderByHoraEntradaDesc(usuario)
-                .isPresent();
-
-        return enLinea ? "En línea" : "Fuera de línea";
+    public String estado(Horario h) {
+        if (h.getHoraEntrada() != null && h.getHoraSalida() == null) {
+            return "En línea";
+        }
+        return "Fuera de línea";
     }
 }
