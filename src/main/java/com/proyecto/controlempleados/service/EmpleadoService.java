@@ -20,25 +20,34 @@ public class EmpleadoService {
 
     public Empleado crear(Empleado e){
 
-    if(e.getId() != null){
+        // 🔹 SI ES EDICIÓN
+        if(e.getId() != null){
 
-        Empleado existente = repo.findById(e.getId()).orElse(null);
+            Empleado existente = repo.findById(e.getId()).orElse(null);
 
-        if(existente != null){
-            existente.setNombre(e.getNombre());
-            existente.setApellidos(e.getApellidos());
-            existente.setCedula(e.getCedula());
-            existente.setCorreo(e.getCorreo());
-            existente.setTelefono(e.getTelefono());
-            existente.setEdad(e.getEdad());
-            existente.setPuesto(e.getPuesto());
+            if(existente != null){
 
-            return repo.save(existente);
+                // 🔥 GUARDAR CÉDULA ORIGINAL
+                String cedulaOriginal = existente.getCedula();
+
+                // 🔹 ACTUALIZAR CAMPOS PERMITIDOS
+                existente.setNombre(e.getNombre());
+                existente.setApellidos(e.getApellidos());
+                existente.setCorreo(e.getCorreo());
+                existente.setTelefono(e.getTelefono());
+                existente.setEdad(e.getEdad());
+                existente.setPuesto(e.getPuesto());
+
+                // 🔥 NO PERMITIR CAMBIO DE CÉDULA
+                existente.setCedula(cedulaOriginal);
+
+                return repo.save(existente);
+            }
         }
-    }
 
-    return repo.save(e);
-}
+        // 🔹 SI ES NUEVO
+        return repo.save(e);
+    }
 
     public Empleado buscarPorId(Long id){
         return repo.findById(id).orElse(null);
@@ -48,7 +57,7 @@ public class EmpleadoService {
         repo.deleteById(id);
     }
 
-    // VALIDACIONES CREAR
+    // 🔹 VALIDACIONES CREAR
 
     public boolean existeCedula(String cedula){
         return repo.existsByCedula(cedula);
@@ -62,7 +71,7 @@ public class EmpleadoService {
         return repo.existsByTelefono(telefono);
     }
 
-    // VALIDACIONES EDITAR
+    // 🔹 VALIDACIONES EDITAR
 
     public boolean existeCedulaOtroEmpleado(String cedula, Long id){
         return repo.existsByCedulaAndIdNot(cedula, id);

@@ -12,6 +12,7 @@
         <div class="menu-links">
             <a href="/home">Inicio</a>
             <a href="/empleados">Administrar Empleados</a>
+            <a href="/horarios">Horarios</a>
         </div>
     </nav>
 
@@ -30,7 +31,7 @@
         <input type="text" th:field="*{apellidos}" required>
 
         <label>Cédula</label>
-        <input type="text" th:field="*{cedula}" required>
+        <input type="text" th:field="*{cedula}" th:readonly="${empleado.id != null}" class="cedula-bloqueada">
 
         <label>Correo</label>
         <input type="email" th:field="*{correo}" required>
