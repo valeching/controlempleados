@@ -10,7 +10,7 @@ body{
     min-height:100vh;
 }
 
-/* NAVBAR */
+
 .menu-admin{
     position:fixed;
     top:0;
@@ -47,7 +47,7 @@ body{
     align-items:center;
 }
 
-/* CONTENEDOR */
+
 .container{
     background:white;
     padding:40px;
@@ -57,7 +57,7 @@ body{
     margin-top:120px;
 }
 
-/* HOME / LOGIN / FORMULARIOS */
+
 .home-page .container{
     width:420px;
 }
@@ -105,7 +105,7 @@ body{
     width:500px;
 }
 
-/* EMPLEADOS */
+
 .empleados-page{
     padding-top:100px;  
 }
@@ -120,14 +120,14 @@ body{
     width:1250px;
 }
 
-/* TITULOS */
+
 h1,h2,h3{
     margin-bottom:20px;
     text-align:center;
     color: #000;
 }
 
-/* FORMULARIOS */
+
 form{
     display:flex;
     flex-direction:column;
@@ -153,7 +153,7 @@ input{
     cursor:not-allowed;
 }
 
-/* BOTONES */
+
 button{
     margin-top:20px;
     padding:12px;
@@ -176,7 +176,7 @@ button:hover{
     background:#c0392b;
 }
 
-/* BOTONES ACCIONES HORARIOS */
+
 .acciones{
     display:flex;
     justify-content:center;
@@ -200,7 +200,7 @@ button:hover{
     background:#c0392b;
 }
 
-/* TABLA EMPLEADOS */
+
 .empleados-page table{
     width:100%;
     border-collapse:collapse;
@@ -224,7 +224,7 @@ button:hover{
     background:#f5f5f5;
 }
 
-/* LINKS */
+
 a{
     color:#3498db;
     text-decoration:none;
@@ -234,7 +234,7 @@ a:hover{
     text-decoration:none;
 }
 
-/* BOTONES CRUD */
+
 .btn-eliminar{
     background:#e74c3c;
     color:white;
@@ -261,7 +261,7 @@ a:hover{
     background:#1e8e3e;
 }
 
-/* MENSAJES */
+
 .mensaje-error{
     color:#ff4d4d;
     font-weight:bold;
@@ -294,9 +294,6 @@ a:hover{
     background:#2980b9;
 }
 
-/* ===================== */
-/* HORARIOS PAGE */
-/* ===================== */
 
 .horarios-page{
     padding-top:100px;
@@ -331,7 +328,7 @@ a:hover{
     font-weight:bold;
 }
 
-/* TABLA HORARIOS */
+
 .horarios-page table{
     width:100%;
     border-collapse:collapse;
