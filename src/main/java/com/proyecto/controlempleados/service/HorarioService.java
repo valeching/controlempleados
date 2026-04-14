@@ -44,7 +44,6 @@ public class HorarioService {
         return repo.save(h);
     }
 
-    // 🔹 REGISTRAR SALIDA
     public Horario registrarSalida(Usuario usuario) {
 
         Optional<Horario> activoOpt =

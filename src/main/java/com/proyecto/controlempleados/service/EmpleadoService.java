@@ -20,17 +20,17 @@ public class EmpleadoService {
 
     public Empleado crear(Empleado e){
 
-        // 🔹 SI ES EDICIÓN
+       
         if(e.getId() != null){
 
             Empleado existente = repo.findById(e.getId()).orElse(null);
 
             if(existente != null){
 
-                // 🔥 GUARDAR CÉDULA ORIGINAL
+                
                 String cedulaOriginal = existente.getCedula();
 
-                // 🔹 ACTUALIZAR CAMPOS PERMITIDOS
+                
                 existente.setNombre(e.getNombre());
                 existente.setApellidos(e.getApellidos());
                 existente.setCorreo(e.getCorreo());
@@ -38,14 +38,13 @@ public class EmpleadoService {
                 existente.setEdad(e.getEdad());
                 existente.setPuesto(e.getPuesto());
 
-                // 🔥 NO PERMITIR CAMBIO DE CÉDULA
+            
                 existente.setCedula(cedulaOriginal);
 
                 return repo.save(existente);
             }
         }
 
-        // 🔹 SI ES NUEVO
         return repo.save(e);
     }
 
@@ -57,8 +56,7 @@ public class EmpleadoService {
         repo.deleteById(id);
     }
 
-    // 🔹 VALIDACIONES CREAR
-
+   
     public boolean existeCedula(String cedula){
         return repo.existsByCedula(cedula);
     }
@@ -71,7 +69,7 @@ public class EmpleadoService {
         return repo.existsByTelefono(telefono);
     }
 
-    // 🔹 VALIDACIONES EDITAR
+    
 
     public boolean existeCedulaOtroEmpleado(String cedula, Long id){
         return repo.existsByCedulaAndIdNot(cedula, id);
