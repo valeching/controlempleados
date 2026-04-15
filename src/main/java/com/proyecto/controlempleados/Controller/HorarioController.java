@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -33,21 +34,29 @@ public class HorarioController {
 
         List<Horario> horarios;
 
-        
+      
         if (usuario.getRol().name().equals("ADMIN")) {
             horarios = service.listarTodos();
         } else {
-            
             horarios = service.listarPorUsuario(usuario);
         }
 
         model.addAttribute("horarios", horarios);
 
+        
+        String estado = service.estadoUsuario(usuario);
+        model.addAttribute("estado", estado);
+
+      
+        boolean enLinea = estado.equals("En línea");
+        model.addAttribute("enLinea", enLinea);
+
         return "horarios";
     }
 
+
     @PostMapping("/entrada")
-    public String entrada(Authentication auth, Model model) {
+    public String entrada(Authentication auth, RedirectAttributes redirectAttributes) {
 
         try {
             Usuario usuario = usuarioRepo.findByUsername(auth.getName())
@@ -55,16 +64,18 @@ public class HorarioController {
 
             service.registrarEntrada(usuario);
 
+            redirectAttributes.addFlashAttribute("success", "Entrada registrada correctamente");
+
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
 
         return "redirect:/horarios";
     }
 
-    
+  
     @PostMapping("/salida")
-    public String salida(Authentication auth, Model model) {
+    public String salida(Authentication auth, RedirectAttributes redirectAttributes) {
 
         try {
             Usuario usuario = usuarioRepo.findByUsername(auth.getName())
@@ -72,8 +83,10 @@ public class HorarioController {
 
             service.registrarSalida(usuario);
 
+            redirectAttributes.addFlashAttribute("success", "Salida registrada correctamente");
+
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
 
         return "redirect:/horarios";
